@@ -18,29 +18,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
-        ArrayList<Point>  points = new ArrayList<>();
-        points.add(new Point(0,0));
-        points.add(new Point(0,1));
-        points.add(new Point(1,1));
-        points.add(new Point(1,0));
-
-        int res = points.get(1).x + points.get(1).y;
-
-        Log.w("MainActivity",String.valueOf(res));
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
     @Override
@@ -59,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            ArrayList<Point>  points = new ArrayList<>();
+            points.add(new Point(0,0));
+            points.add(new Point(0,1));
+            points.add(new Point(1,1));
+            points.add(new Point(1,0));
+
+            int res = points.get(1).x + points.get(1).y;
+
+            Log.w("MainActivity",String.valueOf(res));
+
             return true;
         }
 

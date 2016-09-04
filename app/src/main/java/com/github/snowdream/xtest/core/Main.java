@@ -1,11 +1,9 @@
-package com.github.snowdream.xtest;
+package com.github.snowdream.xtest.core;
 
 import android.app.Application;
-import android.content.Context;
+import com.github.snowdream.xtest.util.ArrayListTest;
 import de.robv.android.xposed.IXposedHookLoadPackage;
-import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 /**
@@ -29,13 +27,8 @@ public class Main implements IXposedHookLoadPackage {
 
         XposedBridge.log("XTest Launch app: " + lpparam.packageName);
 
-        XposedHelpers.findAndHookMethod("java.util.ArrayList", lpparam.classLoader, "get", int.class, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                param.setResult(null);
-                XposedBridge.log("getMapContainer null");
-            }
-        });
+        //util
+        ArrayListTest.handleLoadPackage(lpparam.classLoader);
 
         XposedBridge.log("XTest  handleLoadPackage finish.");
 
