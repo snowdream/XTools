@@ -10,7 +10,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
  * Created by snowdream on 16-8-30.
  */
 public class Main implements IXposedHookLoadPackage {
-    private static final String HOOKED_PACKAGE_NAME = "com.github.snowdream.xtest";
+    public static final String HOOKED_PACKAGE_NAME = "com.github.snowdream.xtest";
 
     /**
      * This method is called when an app is loaded. It's called very early, even before

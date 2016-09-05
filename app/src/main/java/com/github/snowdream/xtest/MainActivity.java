@@ -29,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+                    ArrayList<Point>  points = new ArrayList<>();
+                    points.add(new Point(0,0));
+                    points.add(new Point(0,1));
+                    points.add(new Point(1,1));
+                    points.add(new Point(1,0));
+
+                    int res = points.get(1).x + points.get(1).y;
+
+                    Log.w("MainActivity",String.valueOf(res));
             }
         });
     }
@@ -48,20 +58,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            ArrayList<Point>  points = new ArrayList<>();
-            points.add(new Point(0,0));
-            points.add(new Point(0,1));
-            points.add(new Point(1,1));
-            points.add(new Point(1,0));
-
-            int res = points.get(1).x + points.get(1).y;
-
-            Log.w("MainActivity",String.valueOf(res));
-
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 }
