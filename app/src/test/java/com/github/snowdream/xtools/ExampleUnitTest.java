@@ -1,4 +1,4 @@
-package com.github.snowdream.xtest;
+package com.github.snowdream.xtools;
 
 import org.junit.Test;
 

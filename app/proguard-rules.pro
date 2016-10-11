@@ -15,3 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class com.netease.nis.bugrpt.** {*;}
+
+# 保留源文件名为"Proguard"字符串，而非原始的类名 并保留行号
+-keepattributes SourceFile,LineNumberTable

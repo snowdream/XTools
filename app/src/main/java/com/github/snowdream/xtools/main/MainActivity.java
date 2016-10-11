@@ -1,17 +1,18 @@
-package com.github.snowdream.xtest;
+package com.github.snowdream.xtools.main;
 
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import java.util.ArrayList;
+import com.github.snowdream.xtools.R;
+import com.github.snowdream.xtools.base.ui.BaseGridFragment;
+import com.netease.nis.bugrpt.CrashHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        CrashHandler.init(getApplicationContext());
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -29,16 +31,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
-                    ArrayList<Point>  points = new ArrayList<>();
-                    points.add(new Point(0,0));
-                    points.add(new Point(0,1));
-                    points.add(new Point(1,1));
-                    points.add(new Point(1,0));
-
-                    int res = points.get(1).x + points.get(1).y;
-
-                    Log.w("MainActivity",String.valueOf(res));
+                BaseGridFragment fragment = new BaseGridFragment();
+                fragmentTransaction.add(R.id.container, fragment);
+                fragmentTransaction.commit();
             }
         });
     }

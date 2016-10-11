@@ -1,11 +1,11 @@
-package com.github.snowdream.xtest.util;
+package com.github.snowdream.xtools.util;
 
 import android.support.annotation.NonNull;
-import com.github.snowdream.xtest.core.Mode;
-import com.github.snowdream.xtest.xposed.XTest_MethodHook;
+import com.github.snowdream.xtools.base.Mode;
+import com.github.snowdream.xtools.xposed.XTools_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
-import static com.github.snowdream.xtest.core.Settings.mode;
+import static com.github.snowdream.xtools.base.Settings.mode;
 
 /**
  * Created by snowdream on 16-9-4.
@@ -23,24 +23,11 @@ public final class ArrayListTest {
 
 
     private static void forceEmptySize(@NonNull final ClassLoader classLoader) {
-        XposedHelpers.findAndHookMethod(CLASS_NAME, classLoader, "size", new XTest_MethodHook() {
+
+        XposedHelpers.findAndHookMethod(CLASS_NAME, classLoader, "isEmpty", new XTools_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                if (!shouldMethodHooked(param)) return;
-
-                if (param.thisObject != null) {
-                    XposedHelpers.setIntField(param.thisObject, "size",0);
-                }
-
-                param.setResult(0);
-                log(param,"ArrayListTest: forceEmptySize  size=0");
-            }
-        });
-
-        XposedHelpers.findAndHookMethod(CLASS_NAME, classLoader, "isEmpty", new XTest_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                if (!shouldMethodHooked(param)) return;
+                if (!isFromAllowedPackage(param)) return;
 
                 if (param.thisObject != null) {
                     XposedHelpers.setIntField(param.thisObject, "size",0);
@@ -58,10 +45,10 @@ public final class ArrayListTest {
      * @param classLoader
      */
     private static void forceEmptyItem(@NonNull final ClassLoader classLoader) {
-        XposedHelpers.findAndHookMethod(CLASS_NAME, classLoader, "get", int.class, new XTest_MethodHook() {
+        XposedHelpers.findAndHookMethod(CLASS_NAME, classLoader, "get", int.class, new XTools_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                if (!shouldMethodHooked(param)) return;
+                if (!isFromAllowedPackage(param)) return;
 
                 param.setResult(null);
                 log(param,"ArrayListTest: forceEmptyItem");

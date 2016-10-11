@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="container" type="id" />
+    <item name="gridview" type="id" />
+    <item name="listview" type="id" />
+    <item name="item" type="id" />
+    <item name="image" type="id" />
+    <item name="text" type="id" />
+</resources>

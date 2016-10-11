@@ -1,16 +1,15 @@
-package com.github.snowdream.xtest.xposed;
+package com.github.snowdream.xtools.xposed;
 
-import android.app.AndroidAppHelper;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import com.github.snowdream.xtest.core.Settings;
+
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 
 /**
  * Created by snowdream on 16-9-5.
  */
-public class XTest_MethodHook extends XC_MethodHook{
+public class XTools_MethodHook extends XC_MethodHook{
     @Override
     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
         super.beforeHookedMethod(param);
@@ -21,18 +20,20 @@ public class XTest_MethodHook extends XC_MethodHook{
         super.afterHookedMethod(param);
     }
 
-
     /**
      * Avoid hook method in system code
      *
      * @param param
      * @return
      */
-    protected boolean shouldMethodHooked(@NonNull MethodHookParam param){
-        Class clazz = param.method.getDeclaringClass();
+    protected boolean isFromAllowedPackage(@NonNull MethodHookParam param){
+        int index = 6;
 
-        log(param,"shouldMethodHooked"+" "+ AndroidAppHelper.currentPackageName()+" "+AndroidAppHelper.currentProcessName());
-        return Settings.shouldMethodHooked(clazz);
+        String className = Thread.currentThread().getStackTrace()[index].getClassName();
+
+        if (TextUtils.isEmpty(className)) return false;
+
+        return className.contains("com.github.snowdream.xtools");
     }
 
     /**
