@@ -1,4 +1,4 @@
-package com.github.snowdream.xtools.base;
+package com.github.snowdream.xtools.main;
 
 /**
  * Created by snowdream on 16-9-4.

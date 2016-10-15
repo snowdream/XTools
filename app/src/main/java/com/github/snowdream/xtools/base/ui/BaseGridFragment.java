@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 
 import com.github.snowdream.xtools.R;
 import com.github.snowdream.xtools.base.module.Module;
@@ -43,7 +44,6 @@ public class BaseGridFragment extends BaseFragment {
 
         mAdapter = new BaseGridAdapter(getContext(), getModules());
         mGridView.setAdapter(mAdapter);
-
         mGridView.setOnItemClickListener(new XToolsOnItemClickListener(getActivity(), mAdapter));
     }
 

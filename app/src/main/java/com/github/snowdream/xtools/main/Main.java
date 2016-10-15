@@ -1,7 +1,10 @@
 package com.github.snowdream.xtools.main;
 
 import android.app.Application;
-import com.github.snowdream.xtools.util.ArrayListTest;
+
+import com.github.snowdream.xtools.modules.detect.DetectHook;
+import com.github.snowdream.xtools.modules.detect.basic.ArrayListHook;
+
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -27,8 +30,7 @@ public class Main implements IXposedHookLoadPackage {
 
         XposedBridge.log("XTools Launch app: " + lpparam.packageName);
 
-        //util
-//        ArrayListTest.handleLoadPackage(lpparam.classLoader);
+        DetectHook.hook(lpparam.classLoader);
 
         XposedBridge.log("XTools  handleLoadPackage finish.");
 

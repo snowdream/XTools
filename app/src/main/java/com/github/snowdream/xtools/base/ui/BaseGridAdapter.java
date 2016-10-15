@@ -75,6 +75,9 @@ public class BaseGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Module module = getItem(position);
+        if (module == null) return null;
+
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -85,10 +88,6 @@ public class BaseGridAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        Module module = getItem(position);
-
-        if (module == null) return null;
 
         if (module.getIconResID() > 0) {
             holder.imageView.setImageResource(module.getIconResID());
