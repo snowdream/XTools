@@ -28,9 +28,12 @@ public class Main implements IXposedHookLoadPackage {
         if (!lpparam.packageName.equals(HOOKED_PACKAGE_NAME))
             return;
 
-        XposedBridge.log("XTools Launch app: " + lpparam.packageName);
+        ClassLoader classLoader = lpparam.classLoader;
 
-        DetectHook.hook(lpparam.classLoader);
+        XposedBridge.log("XTools Launch app: " + classLoader);
+
+        ContextHook.hook(classLoader);
+//        DetectHook.hook(classLoader);
 
         XposedBridge.log("XTools  handleLoadPackage finish.");
 
