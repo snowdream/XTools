@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.github.snowdream.xtools.modules.detect.blockcanary.BlockCanaryHook;
+import com.github.snowdream.xtools.modules.detect.leakcanary.LeakCanaryHook;
 import com.github.snowdream.xtools.util.LogUtil;
 
 import de.robv.android.xposed.XC_MethodHook;
@@ -29,9 +30,11 @@ public class ContextHook {
 
                     Context context = app.getApplicationContext();
 
-
-                    //hook block canary
+                    //hook blockcanary
                     BlockCanaryHook.hook(context, classLoader);
+
+                    //hook leakcanary
+                    LeakCanaryHook.hook(app, classLoader);
                 }
             }
         });

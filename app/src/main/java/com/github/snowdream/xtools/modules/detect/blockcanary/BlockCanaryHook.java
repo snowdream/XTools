@@ -12,6 +12,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * see: BlockCanary https://github.com/markzhai/AndroidPerformanceMonitor
+ *
  * Created by snowdream on 16-10-15.
  */
 public class BlockCanaryHook {
