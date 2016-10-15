@@ -2,6 +2,7 @@ package com.github.snowdream.xtools.main;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 
 import com.github.snowdream.xtools.modules.detect.blockcanary.BlockCanaryHook;
@@ -29,6 +30,14 @@ public class ContextHook {
                     LogUtil.log(TAG, app.getPackageName());
 
                     Context context = app.getApplicationContext();
+
+                    try {
+                        String pkgName = "com.github.snowdream.xtools";
+                        context = app.createPackageContext(pkgName,
+                                Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE) ;
+                    } catch (PackageManager.NameNotFoundException e) {
+                        LogUtil.log(TAG,e);
+                    }
 
                     //hook blockcanary
                     BlockCanaryHook.hook(context, classLoader);
