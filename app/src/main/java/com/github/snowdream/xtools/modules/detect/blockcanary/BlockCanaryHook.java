@@ -1,11 +1,11 @@
 package com.github.snowdream.xtools.modules.detect.blockcanary;
 
 import android.content.Context;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 
 import com.github.moduth.blockcanary.BlockCanary;
 import com.github.moduth.blockcanary.BlockCanaryContext;
+import com.github.snowdream.xtools.util.LogUtil;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -17,8 +17,11 @@ import java.util.List;
  * Created by snowdream on 16-10-15.
  */
 public class BlockCanaryHook {
+    private static final String TAG = BlockCanaryHook.class.getSimpleName();
 
     public static void hook(@NonNull Context context, @NonNull final ClassLoader classLoader) throws Throwable {
+        LogUtil.log(TAG, "hook");
+
         BlockCanary.install(context, new AppBlockCanaryContext()).start();
     }
 
@@ -69,7 +72,7 @@ public class BlockCanaryHook {
          * @return threshold in mills
          */
         public int provideBlockThreshold() {
-            return 1000;
+            return 500;
         }
 
         /**
@@ -92,7 +95,7 @@ public class BlockCanaryHook {
          * @return path of log files
          */
         public String providePath() {
-            return Environment.getExternalStorageDirectory().getPath()+"/blockcanary";
+            return "/blockcanary/";
         }
 
         /**

@@ -2,6 +2,7 @@ package com.github.snowdream.xtools.base.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ public class BaseGridFragment extends BaseFragment {
     protected GridView mGridView = null;
     protected BaseGridAdapter mAdapter = null;
 
+    private static List<Fragment> list=new ArrayList<>();
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +48,10 @@ public class BaseGridFragment extends BaseFragment {
         mAdapter = new BaseGridAdapter(getContext(), getModules());
         mGridView.setAdapter(mAdapter);
         mGridView.setOnItemClickListener(new XToolsOnItemClickListener(getActivity(), mAdapter));
+
+        for (int i =1;i<10000;i++){
+            list.add(new BaseGridFragment());
+        }
     }
 
     public List<Module> getModules(){
